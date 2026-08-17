@@ -1,0 +1,58 @@
+<section class="employee-section">
+
+  <h2>Employee List</h2>
+
+  @if (employees.length === 0) {
+
+    <p class="empty">
+      No employees found.
+    </p>
+
+  } @else {
+
+    <div class="employee-container">
+
+      @for (employee of employees; track employee.id) {
+
+        <div
+          class="employee-card"
+          appHighlight>
+
+          <div class="employee-info">
+
+            <h3>{{ employee.name }}</h3>
+
+            <p>
+              <strong>Email:</strong>
+              {{ employee.email }}
+            </p>
+
+            <p>
+              <strong>Age:</strong>
+              {{ employee.age }}
+            </p>
+
+            <p>
+              <strong>Department:</strong>
+              {{ employee.department }}
+            </p>
+
+          </div>
+
+          <button
+            class="delete-button"
+            (click)="deleteEmployee(employee.id)">
+
+            Delete
+
+          </button>
+
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+</section>

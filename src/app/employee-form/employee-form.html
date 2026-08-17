@@ -1,0 +1,79 @@
+<section class="form-section">
+
+  <h2>Add Employee</h2>
+
+  <div class="form-group">
+
+    <label>Name</label>
+
+    <input
+      type="text"
+      [(ngModel)]="name"
+      placeholder="Enter employee name"
+    >
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>Email</label>
+
+    <input
+      type="email"
+      [(ngModel)]="email"
+      placeholder="Enter employee email"
+    >
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>Age</label>
+
+    <input
+      type="number"
+      [(ngModel)]="age"
+      placeholder="Enter employee age"
+    >
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>Department</label>
+
+    <select [(ngModel)]="department">
+
+      <option value="Development">
+        Development
+      </option>
+
+      <option value="Testing">
+        Testing
+      </option>
+
+      <option value="HR">
+        HR
+      </option>
+
+      <option value="Management">
+        Management
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <button
+    type="button"
+    (click)="submitForm()">
+
+    Add Employee
+
+  </button>
+
+</section>

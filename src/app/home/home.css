@@ -1,0 +1,13 @@
+.home {
+  text-align: center;
+  padding: 30px;
+}
+
+.home h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.home p {
+  color: #666;
+}
