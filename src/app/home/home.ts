@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import {EmployeeForm} from '../employee-form/employee-form';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [
+    EmployeeForm
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

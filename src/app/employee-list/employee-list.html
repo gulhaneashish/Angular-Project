@@ -2,57 +2,84 @@
 
   <h2>Employee List</h2>
 
-  @if (employees.length === 0) {
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    placeholder="Search employee..."
+  >
+
+  <!-- No employees exist -->
+  <div *ngIf="employees.length === 0">
 
     <p class="empty">
       No employees found.
     </p>
 
-  } @else {
+  </div>
 
-    <div class="employee-container">
+  <!-- Employees exist -->
+  <div
+    class="employee-container"
+    *ngIf="employees.length > 0">
 
-      @for (employee of employees; track employee.id) {
+    <!-- Employee cards -->
+    <div
+      class="employee-card"
+      appHighlight
+      *ngFor="let employee of employees | filter: searchText; trackBy: trackById">
 
-        <div
-          class="employee-card"
-          appHighlight>
+      <div class="employee-info">
 
-          <div class="employee-info">
+        <h3>
+          {{ employee.name | capitalize }}
+        </h3>
 
-            <h3>{{ employee.name }}</h3>
+        <p>
+          <strong>Email:</strong>
+          {{ employee.email }}
+        </p>
 
-            <p>
-              <strong>Email:</strong>
-              {{ employee.email }}
-            </p>
+        <p>
+          <strong>Age:</strong>
+          {{ employee.age }}
+        </p>
 
-            <p>
-              <strong>Age:</strong>
-              {{ employee.age }}
-            </p>
+        <p>
+          <strong>Department:</strong>
+          {{ employee.department }}
+        </p>
 
-            <p>
-              <strong>Department:</strong>
-              {{ employee.department }}
-            </p>
+        <p *ngIf="employee.status">
+          <strong>Status:</strong>
+          Active
+        </p>
 
-          </div>
+        <p *ngIf="!employee.status">
+          <strong>Status:</strong>
+          Inactive
+        </p>
 
-          <button
-            class="delete-button"
-            (click)="deleteEmployee(employee.id)">
+      </div>
 
-            Delete
+      <button
+        class="delete-button"
+        (click)="deleteEmployee(employee.id)">
 
-          </button>
+        Delete
 
-        </div>
-
-      }
+      </button>
 
     </div>
 
-  }
+  </div>
+
+  <!-- Search returned no employees -->
+  <p
+    *ngIf="employees.length > 0 && (employees | filter: searchText).length === 0"
+    class="empty">
+
+    No employees match your search.
+
+  </p>
 
 </section>

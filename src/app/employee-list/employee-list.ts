@@ -1,23 +1,42 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Employee } from '../employee';
+import { EmployeeService } from '../employee.service';
 import { Highlight } from '../highlight';
+import { CapitalizePipe } from '../capitalize-pipe';
+import { FilterPipe } from '../filter-pipe';
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [Highlight],
+  imports: [
+    CommonModule,
+    FormsModule,
+    Highlight,
+    CapitalizePipe,
+    FilterPipe
+  ],
   templateUrl: './employee-list.html',
   styleUrl: './employee-list.css'
 })
 export class EmployeeList {
 
-  @Input()
   employees: Employee[] = [];
 
-  @Output()
-  employeeDeleted = new EventEmitter<number>();
+  searchText = '';
 
-  deleteEmployee(id: number) {
-    this.employeeDeleted.emit(id);
+  constructor(private employeeService: EmployeeService) {
+    this.employees = this.employeeService.getEmployees();
+  }
+
+  deleteEmployee(id: number): void {
+    this.employeeService.deleteEmployee(id);
+
+    this.employees = this.employeeService.getEmployees();
+  }
+
+  trackById(index: number, employee: Employee): number {
+    return employee.id;
   }
 }

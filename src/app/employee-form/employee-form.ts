@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Employee } from '../employee';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -15,11 +16,11 @@ export class EmployeeForm {
   email = '';
   age = 0;
   department = 'Development';
+  status = true;
 
-  @Output()
-  employeeAdded = new EventEmitter<Employee>();
+  constructor(private employeeService: EmployeeService) {}
 
-  submitForm() {
+  submitForm(): void {
 
     if (!this.name || !this.email || this.age <= 0) {
       alert('Please enter valid employee details.');
@@ -31,14 +32,16 @@ export class EmployeeForm {
       name: this.name,
       email: this.email,
       age: this.age,
-      department: this.department
+      department: this.department,
+      status: this.status
     };
 
-    this.employeeAdded.emit(employee);
+    this.employeeService.addEmployee(employee);
 
     this.name = '';
     this.email = '';
     this.age = 0;
     this.department = 'Development';
+    this.status = true;
   }
 }

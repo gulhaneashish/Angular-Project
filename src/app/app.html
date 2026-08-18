@@ -1,18 +1,7 @@
 <app-header></app-header>
 
 <main class="container">
-
-  <app-home></app-home>
-
-  <app-employee-form
-    (employeeAdded)="addEmployee($event)">
-  </app-employee-form>
-
-  <app-employee-list
-    [employees]="employees"
-    (employeeDeleted)="deleteEmployee($event)">
-  </app-employee-list>
-
+  <router-outlet></router-outlet>
 </main>
 
 <app-footer></app-footer>

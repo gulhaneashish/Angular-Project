@@ -4,4 +4,5 @@ export interface Employee {
   email: string;
   age: number;
   department: string;
+  status:boolean;
 }
