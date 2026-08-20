@@ -1,7 +1,36 @@
 <section class="employees-page">
 
-  
+  <h2>Employees From API</h2>
 
-  <app-employee-list></app-employee-list>
+  @if (errorMessage) {
+    <p class="error">
+      {{ errorMessage }}
+    </p>
+  }
+
+  @if (!errorMessage && employees.length === 0) {
+    <p>Loading employees...</p>
+  }
+
+  @if (employees.length > 0) {
+    <div class="employee-container">
+
+      @for (employee of employees; track employee.id) {
+
+        <div class="employee-card">
+
+          <h3>{{ employee.name }}</h3>
+
+          <p>
+            <strong>Email:</strong>
+            {{ employee.email }}
+          </p>
+
+        </div>
+
+      }
+
+    </div>
+  }
 
 </section>

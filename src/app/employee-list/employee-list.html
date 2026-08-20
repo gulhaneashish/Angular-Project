@@ -26,7 +26,7 @@
     <div
       class="employee-card"
       appHighlight
-      *ngFor="let employee of employees | filter: searchText; trackBy: trackById">
+      *ngFor="let employee of employees | filter: searchText as filteredEmployees; trackBy: trackById">
 
       <div class="employee-info">
 
@@ -81,5 +81,36 @@
     No employees match your search.
 
   </p>
+
+</section>
+
+<section class="api-section">
+
+  <h2>Employees From API</h2>
+
+  @if (apiEmployees.length === 0) {
+    <p>Loading employees from API...</p>
+  }
+
+  @if (apiEmployees.length > 0) {
+    <div class="api-employee-container">
+
+      @for (employee of apiEmployees; track employee.id) {
+
+        <div class="api-employee-card">
+
+          <h3>{{ employee.name | capitalize }}</h3>
+
+          <p>
+            <strong>Email:</strong>
+            {{ employee.email }}
+          </p>
+
+        </div>
+
+      }
+
+    </div>
+  }
 
 </section>

@@ -1,10 +1,26 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, catchError, throwError } from 'rxjs';
 import { Employee } from './employee';
+import { ApiEmployee } from './api-employee';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
+
+  private apiUrl = 'https://jsonplaceholder.typicode.com/users';
+
+  constructor(private http: HttpClient) {}
+
+  getEmployees(): Observable<ApiEmployee[]> {
+    return this.http.get<ApiEmployee[]>(this.apiUrl).pipe(
+      catchError(error => {
+        console.error('Employee API error:', error);
+        return throwError(() => new Error('Unable to fetch employees'));
+      })
+    );
+  }
 
   employees: Employee[] = [
     {
@@ -25,7 +41,7 @@ export class EmployeeService {
     }
   ];
 
-  getEmployees(): Employee[] {
+  getLocalEmployees(): Employee[] {
     return this.employees;
   }
 
