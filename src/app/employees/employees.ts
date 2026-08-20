@@ -1,11 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { ApiEmployee } from '../api-employee';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './employees.html',
   styleUrl: './employees.css'
 })

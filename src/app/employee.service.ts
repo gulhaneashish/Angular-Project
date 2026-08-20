@@ -22,6 +22,15 @@ export class EmployeeService {
     );
   }
 
+  getEmployeeById(id: string): Observable<ApiEmployee> {
+    return this.http.get<ApiEmployee>(`${this.apiUrl}/${id}`).pipe(
+      catchError(error => {
+        console.error('Employee Details API error:', error);
+        return throwError(() => new Error('Unable to fetch employee'));
+      })
+    );
+  }
+
   employees: Employee[] = [
     {
       id: 1,

@@ -25,7 +25,9 @@
             <strong>Email:</strong>
             {{ employee.email }}
           </p>
-
+          <a [routerLink]="['/employees', employee.id]">
+      View Details
+    </a>
         </div>
 
       }
