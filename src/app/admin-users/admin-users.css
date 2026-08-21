@@ -1,0 +1,82 @@
+.page-card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.page-header h2 {
+  margin: 0;
+}
+
+.page-header p {
+  margin: 5px 0 0;
+  color: #777;
+}
+
+.page-header button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #222;
+  color: white;
+  cursor: pointer;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.user-avatar {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-info strong,
+.user-info span {
+  display: block;
+}
+
+.user-info span {
+  margin-top: 4px;
+  color: #777;
+  font-size: 13px;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+.active-status {
+  background: #e8f5e9;
+  color: #2e7d32;
+}

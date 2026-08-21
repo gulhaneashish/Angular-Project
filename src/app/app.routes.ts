@@ -23,26 +23,46 @@ export const routes: Routes = [
     component: Login
   },
   {
-    path: 'admin',
+    path: 'register',
     loadComponent: () =>
-      import('./admin/admin').then(m => m.Admin),
-    canActivate: [authGuard],
-    children: [
-      {
-        path: 'dashboard',
-        loadComponent: () =>
-          import('./admin-dashboard/admin-dashboard').then(m => m.AdminDashboard)
-      },
-      {
-        path: 'users',
-        loadComponent: () =>
-          import('./admin-users/admin-users').then(m => m.AdminUsers)
-      },
-      {
-        path: 'settings',
-        loadComponent: () =>
-          import('./admin-settings/admin-settings').then(m => m.AdminSettings)
-      }
-    ]
-  }
+      import('./registration/registration').then(m => m.Registration)
+  },
+ {
+  path: 'admin',
+  loadComponent: () =>
+    import('./admin/admin').then(m => m.Admin),
+
+  canActivate: [authGuard],
+
+  children: [
+
+    {
+      path: '',
+      redirectTo: 'dashboard',
+      pathMatch: 'full'
+    },
+
+    {
+      path: 'dashboard',
+      loadComponent: () =>
+        import('./admin-dashboard/admin-dashboard')
+          .then(m => m.AdminDashboard)
+    },
+
+    {
+      path: 'users',
+      loadComponent: () =>
+        import('./admin-users/admin-users')
+          .then(m => m.AdminUsers)
+    },
+
+    {
+      path: 'settings',
+      loadComponent: () =>
+        import('./admin-settings/admin-settings')
+          .then(m => m.AdminSettings)
+    }
+
+  ]
+}
 ];

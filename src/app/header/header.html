@@ -1,18 +1,35 @@
 <header class="header">
 
-  <div class="logo">
-    Employee Management System
+  <div class="header-container">
+
+    <a class="logo" routerLink="/">
+      Employee Management System
+    </a>
+
+    <nav class="nav">
+
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Home
+      </a>
+
+      <a routerLink="/employees" routerLinkActive="active">
+        Employees
+      </a>
+
+      <a routerLink="/admin" routerLinkActive="active">
+        Admin
+      </a>
+
+      <a routerLink="/login" routerLinkActive="active">
+        Login
+      </a>
+
+      <a routerLink="/register" routerLinkActive="active">
+        Register
+      </a>
+
+    </nav>
+
   </div>
 
- <nav>
- <main class="container">
- <nav>
-  <a routerLink="/">Home</a>
-  <a routerLink="/employees">Employees</a>
-  <a routerLink="/login">Login</a>
-  <a routerLink="/admin">Admin</a>
-</nav>
-
-</main>
-</nav>
 </header>

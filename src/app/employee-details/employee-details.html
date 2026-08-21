@@ -1,40 +1,155 @@
-<h1>Employee Details</h1>
+<section class="details-page">
 
-@if (employee(); as emp) {
+  @if (employee(); as emp) {
 
-  <h2>{{ emp.name }}</h2>
+    <div class="details-card">
 
-  <p>
-    <strong>ID:</strong>
-    {{ emp.id }}
-  </p>
-<!-- 
-  <p>
-    <strong>Username:</strong>
-    {{ emp.username }}
-  </p> -->
+      <!-- Header -->
+      <div class="details-header">
 
-  <p>
-    <strong>Email:</strong>
-    {{ emp.email }}
-  </p>
+        <div class="employee-avatar">
+          {{ emp.name.charAt(0).toUpperCase() }}
+        </div>
 
-  <!-- <p>
-    <strong>Phone:</strong>
-    {{ emp.phone }}
-  </p>
+        <div>
+          <h1>{{ emp.name }}</h1>
+          <p>@{{ emp.username }}</p>
+        </div>
 
-  <p>
-    <strong>Website:</strong>
-    {{ emp.website }}
-  </p> -->
+      </div>
 
-  <button (click)="goBack()">
-    Back to Employees
-  </button>
+      <!-- Basic Information -->
+      <div class="details-section">
 
-} @else {
+        <h2>Basic Information</h2>
 
-  <p>Loading employee...</p>
+        <div class="details-grid">
 
-}
+          <div class="detail-item">
+            <span class="label">Employee ID</span>
+            <span class="value">{{ emp.id }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="label">Username</span>
+            <span class="value">{{ emp.username }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="label">Email</span>
+            <span class="value">{{ emp.email }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="label">Phone</span>
+            <span class="value">{{ emp.phone }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="label">Website</span>
+            <span class="value">{{ emp.website }}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Address -->
+      <div class="details-section">
+
+        <h2>Address</h2>
+
+        <div class="details-grid">
+
+          <div class="detail-item">
+            <span class="label">Street</span>
+            <span class="value">{{ emp.address.street }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="label">Suite</span>
+            <span class="value">{{ emp.address.suite }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="label">City</span>
+            <span class="value">{{ emp.address.city }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="label">Zip Code</span>
+            <span class="value">{{ emp.address.zipcode }}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Location -->
+      <div class="details-section">
+
+        <h2>Location</h2>
+
+        <div class="details-grid">
+
+          <div class="detail-item">
+            <span class="label">Latitude</span>
+            <span class="value">{{ emp.address.geo.lat }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="label">Longitude</span>
+            <span class="value">{{ emp.address.geo.lng }}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Company -->
+      <div class="details-section">
+
+        <h2>Company</h2>
+
+        <div class="details-grid">
+
+          <div class="detail-item">
+            <span class="label">Company Name</span>
+            <span class="value">{{ emp.company.name }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="label">Catch Phrase</span>
+            <span class="value">{{ emp.company.catchPhrase }}</span>
+          </div>
+
+          <div class="detail-item full-width">
+            <span class="label">Business</span>
+            <span class="value">{{ emp.company.bs }}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Actions -->
+      <div class="details-actions">
+
+        <button (click)="goBack()">
+          ← Back to Employees
+        </button>
+
+      </div>
+
+    </div>
+
+  } @else {
+
+    <div class="loading-card">
+      <div class="loader"></div>
+      <p>Loading employee...</p>
+    </div>
+
+  }
+
+</section>

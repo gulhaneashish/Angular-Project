@@ -1,0 +1,35 @@
+.settings-card {
+  max-width: 800px;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+}
+
+.settings-card h2 {
+  margin: 0;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.setting-row p {
+  margin: 5px 0 0;
+  color: #777;
+  font-size: 13px;
+}
+
+.setting-row input {
+  width: 18px;
+  height: 18px;
+}

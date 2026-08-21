@@ -1,38 +1,61 @@
 <section class="employees-page">
 
-  <h2>Employees From API</h2>
+  <div class="employees-header">
+    <div>
+      <h2>Employees</h2>
+      <p>View and manage employee information</p>
+    </div>
+
+    <span class="employee-count">
+      {{ employees.length }} Employees
+    </span>
+  </div>
 
   @if (errorMessage) {
-    <p class="error">
+    <div class="error-message">
       {{ errorMessage }}
-    </p>
+    </div>
   }
 
   @if (!errorMessage && employees.length === 0) {
-    <p>Loading employees...</p>
+    <div class="loading">
+      Loading employees...
+    </div>
   }
 
   @if (employees.length > 0) {
+
     <div class="employee-container">
 
       @for (employee of employees; track employee.id) {
 
         <div class="employee-card">
 
-          <h3>{{ employee.name }}</h3>
+          <div class="employee-avatar">
+            {{ employee.name.charAt(0).toUpperCase() }}
+          </div>
 
-          <p>
-            <strong>Email:</strong>
-            {{ employee.email }}
-          </p>
-          <a [routerLink]="['/employees', employee.id]">
-      View Details
-    </a>
+          <div class="employee-info">
+
+            <h3>{{ employee.name }}</h3>
+
+            <p>
+              <strong>Email</strong>
+              {{ employee.email }}
+            </p>
+
+            <a [routerLink]="['/employees', employee.id]">
+              View Details →
+            </a>
+
+          </div>
+
         </div>
 
       }
 
     </div>
+
   }
 
 </section>

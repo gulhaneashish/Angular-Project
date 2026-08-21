@@ -1,5 +1,82 @@
-<h1>Login</h1>
+<div class="login-page">
 
-<button (click)="login()">
-  Login
-</button>
+  <div class="login-card">
+
+    <div class="login-header">
+      <div class="login-icon">🔐</div>
+
+      <h1>Welcome Back</h1>
+      <p>Sign in to your employee account</p>
+    </div>
+
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+
+      <div class="form-group">
+
+        <label for="email">Email</label>
+
+        <input
+          id="email"
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          email
+          #emailField="ngModel"
+          placeholder="Enter your email"
+        >
+
+        @if (emailField.touched && emailField.hasError('required')) {
+          <p class="error-message">Email is required</p>
+        }
+
+        @if (emailField.touched && emailField.hasError('email')) {
+          <p class="error-message">Enter a valid email address</p>
+        }
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="password">Password</label>
+
+        <input
+          id="password"
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          minlength="6"
+          #passwordField="ngModel"
+          placeholder="Enter your password"
+        >
+
+        @if (passwordField.touched && passwordField.hasError('required')) {
+          <p class="error-message">Password is required</p>
+        }
+
+        @if (passwordField.touched && passwordField.hasError('minlength')) {
+          <p class="error-message">
+            Password must be at least 6 characters
+          </p>
+        }
+
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
+        Login
+      </button>
+
+    </form>
+
+    <div class="register-link">
+      <span>Don't have an account?</span>
+      <a routerLink="/register">Register</a>
+    </div>
+
+  </div>
+
+</div>

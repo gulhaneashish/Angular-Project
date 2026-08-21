@@ -1,0 +1,158 @@
+.details-page {
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.details-card {
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  padding: 35px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.details-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.employee-avatar {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #333;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.details-header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.details-header p {
+  margin: 5px 0 0;
+  color: #777;
+  font-size: 15px;
+}
+
+.details-section {
+  margin-top: 30px;
+}
+
+.details-section h2 {
+  margin-bottom: 15px;
+  font-size: 19px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.detail-item {
+  padding: 16px;
+  background: #f7f7f7;
+  border-radius: 8px;
+}
+
+.detail-item.full-width {
+  grid-column: span 2;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  color: #777;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.value {
+  display: block;
+  color: #222;
+  font-size: 15px;
+  word-break: break-word;
+}
+
+.details-actions {
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.details-actions button {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 6px;
+  background: #333;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.details-actions button:hover {
+  background: #555;
+}
+
+.loading-card {
+  text-align: center;
+  padding: 60px;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.loader {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 15px;
+  border: 3px solid #ddd;
+  border-top: 3px solid #333;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.loading-card p {
+  color: #777;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 650px) {
+
+  .details-page {
+    margin: 20px auto;
+  }
+
+  .details-card {
+    padding: 20px;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-item.full-width {
+    grid-column: span 1;
+  }
+
+  .details-header h1 {
+    font-size: 24px;
+  }
+
+}
