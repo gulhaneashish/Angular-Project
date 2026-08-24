@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet,  } from '@angular/router';
 import { Header } from './header/header';
+
 import { Footer } from './footer/footer';
 import { Employee } from './employee';
 @Component({
@@ -9,7 +10,8 @@ import { Employee } from './employee';
   imports: [
     RouterOutlet,
     Header,
-    Footer
+    Footer,
+   
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

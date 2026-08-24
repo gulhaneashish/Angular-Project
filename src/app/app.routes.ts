@@ -27,6 +27,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./registration/registration').then(m => m.Registration)
   },
+    {
+    path: 'tasks',
+    loadComponent: () =>
+      import('./tasks/tasks').then(m => m.Tasks)
+  },
  {
   path: 'admin',
   loadComponent: () =>
