@@ -1,47 +1,66 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Employee } from '../employee';
-import { EmployeeService } from '../employee.service';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-employee-form',
-  standalone: true,
-  imports: [FormsModule],
+
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule
+  ],
+
   templateUrl: './employee-form.html',
   styleUrl: './employee-form.css'
 })
 export class EmployeeForm {
 
-  name = '';
-  email = '';
-  age = 0;
-  department = 'Development';
-  status = true;
+  employeeForm = new FormGroup({
 
-  constructor(private employeeService: EmployeeService) {}
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3)
+    ]),
 
-  submitForm(): void {
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email
+    ]),
 
-    if (!this.name || !this.email || this.age <= 0) {
-      alert('Please enter valid employee details.');
+    age: new FormControl<number | null>(null, [
+      Validators.required,
+      Validators.min(18),
+      Validators.max(60)
+    ]),
+
+    department: new FormControl('Development', [
+      Validators.required
+    ])
+
+  });
+
+
+  submitForm() {
+
+    if (this.employeeForm.invalid) {
+
+      this.employeeForm.markAllAsTouched();
+
       return;
     }
 
-    const employee: Employee = {
-      id: Date.now(),
-      name: this.name,
-      email: this.email,
-      age: this.age,
-      department: this.department,
-      status: this.status
-    };
-
-    this.employeeService.addEmployee(employee);
-
-    this.name = '';
-    this.email = '';
-    this.age = 0;
-    this.department = 'Development';
-    this.status = true;
+    console.log('Employee Data:', this.employeeForm.value);
   }
 }

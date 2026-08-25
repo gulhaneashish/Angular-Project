@@ -2,78 +2,155 @@
 
   <h2>Add Employee</h2>
 
-  <div class="form-group">
+  <form [formGroup]="employeeForm" (ngSubmit)="submitForm()">
 
-    <label>Name</label>
+    <div class="form-row">
 
-    <input
-      type="text"
-      [(ngModel)]="name"
-      placeholder="Enter employee name"
-    >
+      <!-- Name -->
+      <mat-form-field appearance="outline">
+        <mat-label>Employee Name</mat-label>
 
-  </div>
+        <input
+          matInput
+          type="text"
+          formControlName="name"
+          placeholder="Enter employee name"
+        >
 
+        @if (employeeForm.controls.name.touched &&
+             employeeForm.controls.name.hasError('required')) {
+          <mat-error>
+            Name is required
+          </mat-error>
+        }
 
-  <div class="form-group">
+        @if (employeeForm.controls.name.touched &&
+             employeeForm.controls.name.hasError('minlength')) {
+          <mat-error>
+            Name must be at least 3 characters
+          </mat-error>
+        }
 
-    <label>Email</label>
-
-    <input
-      type="email"
-      [(ngModel)]="email"
-      placeholder="Enter employee email"
-    >
-
-  </div>
-
-
-  <div class="form-group">
-
-    <label>Age</label>
-
-    <input
-      type="number"
-      [(ngModel)]="age"
-      placeholder="Enter employee age"
-    >
-
-  </div>
+      </mat-form-field>
 
 
-  <div class="form-group">
+      <!-- Email -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
 
-    <label>Department</label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="Enter employee email"
+        >
 
-    <select [(ngModel)]="department">
+        @if (employeeForm.controls.email.touched &&
+             employeeForm.controls.email.hasError('required')) {
+          <mat-error>
+            Email is required
+          </mat-error>
+        }
 
-      <option value="Development">
-        Development
-      </option>
+        @if (employeeForm.controls.email.touched &&
+             employeeForm.controls.email.hasError('email')) {
+          <mat-error>
+            Enter a valid email address
+          </mat-error>
+        }
 
-      <option value="Testing">
-        Testing
-      </option>
+      </mat-form-field>
 
-      <option value="HR">
-        HR
-      </option>
-
-      <option value="Management">
-        Management
-      </option>
-
-    </select>
-
-  </div>
+    </div>
 
 
-  <button
-    type="button"
-    (click)="submitForm()">
+    <div class="form-row">
 
-    Add Employee
+      <!-- Age -->
+      <mat-form-field appearance="outline">
+        <mat-label>Age</mat-label>
 
-  </button>
+        <input
+          matInput
+          type="number"
+          formControlName="age"
+          placeholder="Enter employee age"
+        >
+
+        @if (employeeForm.controls.age.touched &&
+             employeeForm.controls.age.hasError('required')) {
+          <mat-error>
+            Age is required
+          </mat-error>
+        }
+
+        @if (employeeForm.controls.age.touched &&
+             employeeForm.controls.age.hasError('min')) {
+          <mat-error>
+            Age must be at least 18
+          </mat-error>
+        }
+
+        @if (employeeForm.controls.age.touched &&
+             employeeForm.controls.age.hasError('max')) {
+          <mat-error>
+            Age cannot be greater than 60
+          </mat-error>
+        }
+
+      </mat-form-field>
+
+
+      <!-- Department -->
+      <mat-form-field appearance="outline">
+
+        <mat-label>Department</mat-label>
+
+        <mat-select formControlName="department">
+
+          <mat-option value="Development">
+            Development
+          </mat-option>
+
+          <mat-option value="Testing">
+            Testing
+          </mat-option>
+
+          <mat-option value="HR">
+            HR
+          </mat-option>
+
+          <mat-option value="Management">
+            Management
+          </mat-option>
+
+        </mat-select>
+
+        @if (employeeForm.controls.department.touched &&
+             employeeForm.controls.department.hasError('required')) {
+          <mat-error>
+            Department is required
+          </mat-error>
+        }
+
+      </mat-form-field>
+
+    </div>
+
+
+    <div class="button-container">
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit">
+
+        Add Employee
+
+      </button>
+
+    </div>
+
+  </form>
 
 </section>

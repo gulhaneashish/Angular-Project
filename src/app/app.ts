@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterOutlet,  } from '@angular/router';
 import { Header } from './header/header';
-
+import { User } from './user';
+import { UserCard } from './user-card/user-card';
 import { Footer } from './footer/footer';
 import { Employee } from './employee';
+import { Card } from './card/card';
+import { ViewContainerRef } from '@angular/core';
+import { Profile } from './profile/profile';
+import { Statistics } from './statistics/statistics';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -11,13 +16,42 @@ import { Employee } from './employee';
     RouterOutlet,
     Header,
     Footer,
-   
+    UserCard,
+    Card,
+    Profile,
+    Statistics
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
+  @ViewChild('dynamicContainer', { read: ViewContainerRef })
+  dynamicContainer!: ViewContainerRef;
 
+  user: User | null = {
+    id: 1,
+    name: 'Ashish',
+    email: 'ashish@gmail.com',
+    age: 22
+  };
+
+  showProfile() {
+    this.dynamicContainer.clear();
+
+    this.dynamicContainer.createComponent(Profile);
+  }
+
+  showStatistics() {
+    this.dynamicContainer.clear();
+
+    this.dynamicContainer.createComponent(Statistics);
+  }
+
+  onDeleteUser(id: number) {
+    console.log('Deleting user:', id);
+
+    this.user = null;
+  }
   // employees: Employee[] = [
   //   {
   //     id: 1,
@@ -46,4 +80,6 @@ export class App {
   //     employee => employee.id !== id
   //   );
   // }
+
+
 }

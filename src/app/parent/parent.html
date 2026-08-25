@@ -1,0 +1,8 @@
+ <h1>Parent Component</h1>
+
+    <app-child
+      [username]="username"
+      (userSelected)="handleUser($event)">
+    </app-child>
+
+    <p>Selected User: {{ selectedUser }}</p>

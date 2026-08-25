@@ -2,13 +2,15 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { ApiEmployee } from '../api-employee';
 import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-employees',
   standalone: true,
   imports: [RouterLink],
   templateUrl: './employees.html',
-  styleUrl: './employees.css'
+  styleUrl: './employees.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Employees implements OnInit {
 
