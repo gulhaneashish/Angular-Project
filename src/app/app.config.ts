@@ -1,6 +1,11 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptors
+} from '@angular/common/http';
+
+import { authInterceptor } from './interceptors/auth-interceptor';
 import { taskReducer } from './store/tasks/task.reducer';
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';

@@ -3,7 +3,8 @@ import { Home } from './home/home';
 import { Login } from './login/login';
 import { Employees } from './employees/employees';
 import { EmployeeDetails } from './employee-details/employee-details';
-import { authGuard } from './auth-guard';
+import { authGuard } from './guards/auth-guard';
+import { roleGuard } from './guards/role-guard';
 
 export const routes: Routes = [
   {
@@ -37,7 +38,10 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./admin/admin').then(m => m.Admin),
 
-  canActivate: [authGuard],
+  canActivate: [authGuard,
+    roleGuard(['admin'])
+  ]
+  ,
 
   children: [
 

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { NgForm } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms';
+import { AuthService } from '../services/auth';
+
 @Component({
   selector: 'app-login',
   imports: [FormsModule, RouterLink],
@@ -11,28 +11,41 @@ import { NgForm } from '@angular/forms';
 })
 export class Login {
 
-  constructor(private router: Router) {}
-
-   email = '';
+  email = '';
   password = '';
 
-onSubmit(loginForm: NgForm) {
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
-  if (loginForm.invalid) {
-    return;
+  onSubmit(loginForm: NgForm) {
+
+    if (loginForm.invalid) {
+      return;
+    }
+
+    this.authService.login(
+      this.email,
+      this.password
+    ).subscribe({
+
+      next: (response) => {
+
+        this.authService.saveToken(response.token);
+        this.authService.saveRole(response.role);
+        this.router.navigate(['/']);
+
+      },
+
+      error: (error) => {
+
+        console.error('Login failed', error);
+
+      }
+
+    });
+
   }
 
-  console.log('Email:', this.email);
-  console.log('Password:', this.password);
-  localStorage.setItem('token', 'dummy-token');
-
-  this.router.navigate(['/']);
 }
-
-  login(): void {
-    localStorage.setItem('token', 'dummy-token');
-
-    this.router.navigate(['/admin']);
-  }
-}
-
