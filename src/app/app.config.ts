@@ -13,7 +13,7 @@ import { provideEffects } from '@ngrx/effects';
 import { TaskEffects } from './store/tasks/task.effects';
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideStore(),

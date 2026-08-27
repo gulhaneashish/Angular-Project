@@ -1,17 +1,48 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth';
 import { roleGuard } from './role-guard';
 
 describe('roleGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) =>
-    TestBed.runInInjectionContext(() => roleGuard(...guardParameters));
+
+  let authService: any;
+  let router: any;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+
+    authService = {
+      getRole: () => 'admin'
+    };
+
+    router = {
+      parseUrl: () => ({})
+    };
+
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: AuthService,
+          useValue: authService
+        },
+        {
+          provide: Router,
+          useValue: router
+        }
+      ]
+    });
+
   });
 
-  it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
+  it('should allow access for an allowed role', () => {
+
+    const guard = roleGuard(['admin']);
+
+    const result = TestBed.runInInjectionContext(() =>
+      guard({} as any, {} as any)
+    );
+
+    expect(result).toBe(true);
+
   });
+
 });
